@@ -6,13 +6,35 @@ import Chat from './../pages/Chat/Chat.vue'
 import Mine from './../pages/Mine/Mine.vue'
 import Recommend from './../pages/Recommend/Recommend.vue'
 import Search from './../pages/Search/Search.vue'
+import Hot from './../pages/Home/Children/Hot.vue'
+import Box from './../pages/Home/Children/Box.vue'
+import Dress from './../pages/Home/Children/Dress.vue'
+import Ele from './../pages/Home/Children/Ele.vue'
+import Food from './../pages/Home/Children/Food.vue'
+import General from './../pages/Home/Children/General.vue'
+import Man from './../pages/Home/Children/Man.vue'
+import Mbaby from './../pages/Home/Children/Mbaby.vue'
+import Shirt from './../pages/Home/Children/Shirt.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {path: '/', redirect: '/home'},
-    {path: '/home', component: Home},
+    {path: '/home', component: Home,
+      children: [
+        {path: '/home', redirect: '/home/hot'},
+        {path: 'hot', component: Hot},
+        {path: 'box', component: Box},
+        {path: 'dress', component: Dress},
+        {path: 'ele', component: Ele},
+        {path: 'food', component: Food},
+        {path: 'general', component: General},
+        {path: 'man', component: Man},
+        {path: 'mbaby', component: Mbaby},
+        {path: 'shirt', component: Shirt}
+      ]
+    },
     {path: '/chat', component: Chat},
     {path: '/mine', component: Mine},
     {path: '/recommend', component: Recommend},

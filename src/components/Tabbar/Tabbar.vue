@@ -1,9 +1,9 @@
 <template>
   <div class="tabbar">
     <div class="tabbar_item" @click="routeTo('/home')">
-    <img src="../../common/img/icon_home_selected.png" v-if="$route.path === '/home'" alt />
+    <img src="../../common/img/icon_home_selected.png" v-if="$route.path.includes('/home')" alt />
       <img src="../../common/img/icon_home.png" v-else alt />
-      <span :class="{isactive: $route.path === '/home'}">首页</span>
+      <span :class="{isactive: $route.path.includes('/home')}">首页</span>
     </div>
     <div class="tabbar_item" @click="routeTo('/recommend')">
     <img src="../../common/img/icon_intro_selected.png" v-if="$route.path === '/recommend'" alt />
