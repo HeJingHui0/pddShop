@@ -51,6 +51,7 @@ export default {
     Hotshoplist
   },
   mounted() {
+    // this.$store.dispatch('reqHomeSwiper')
     new Swiper(".swiper-container", {
       loop: true,
       autoplay: true,

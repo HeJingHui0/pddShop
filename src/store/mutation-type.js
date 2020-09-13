@@ -1,0 +1,1 @@
+export const HOME_SWIPER = 'home_swiper'
