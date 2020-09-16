@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "better-scroll": "^2.0.3",
     "less-loader": "^5.0.0",
     "ly-tab": "^2.1.2",
     "swiper": "^6.2.0",
