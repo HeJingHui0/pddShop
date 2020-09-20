@@ -1,30 +1,14 @@
 <template>
-  <div class="hot_shop">
+  <div class="hot_shop" v-if="homeShopList.length > 0">
       <ul class="shop_list">
-          <li class="shop_list_item">
-              <img src="../imgs/shop_list/shop_item.png" alt="" class="list_item_img">
-              <span class="list_item_title">我是首页热门板块商品列表的标题我是首页热门板块商品列表的标题我是首页热门板块商品列表的标题</span>
+          <li class="shop_list_item" v-for="(item, index) in homeShopList" :key="index">
+              <img :src="item.image_url" alt="" class="list_item_img">
+              <span class="list_item_title">{{item.goods_name}}</span>
               <div class="list_item_bottom">
-                  <span class="item_bottom_price">￥99.9</span>
-                  <span class="item_bottom_count">已拼999件</span>
+                  <span class="item_bottom_price">￥{{item.normal_price / 100}}</span>
+                  <span class="item_bottom_count">{{item.sales_tip}}</span>
                   <div class="item_bottom_user">
-                      <img src="../imgs/shop_list/user1.jpg" alt="">
-                      <img src="../imgs/shop_list/user2.jpg" alt="">
-                  </div>
-                  <div class="item_bottom_btn">
-                      <button>去拼单></button>
-                  </div>
-              </div>
-          </li>
-          <li class="shop_list_item">
-              <img src="../imgs/shop_list/shop_item.png" alt="" class="list_item_img">
-              <span class="list_item_title">我是首页热门板块商品列表的标题我是首页热门板块商品列表的标题我是首页热门板块商品列表的标题</span>
-              <div class="list_item_bottom">
-                  <span class="item_bottom_price">￥99.9</span>
-                  <span class="item_bottom_count">已拼999件</span>
-                  <div class="item_bottom_user">
-                      <img src="../imgs/shop_list/user1.jpg" alt="">
-                      <img src="../imgs/shop_list/user2.jpg" alt="">
+                      <img :src="subItem.avatar" alt="" v-for="(subItem, subIndex) in item.bubble" :key="subIndex">
                   </div>
                   <div class="item_bottom_btn">
                       <button>去拼单></button>
@@ -36,8 +20,11 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 export default {
-
+    computed: {
+        ...mapState(['homeShopList'])
+    }
 }
 
 </script>

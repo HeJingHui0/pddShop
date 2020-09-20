@@ -1,33 +1,9 @@
 <template>
   <div class="hot">
-    <div class="swiper-container">
+    <div class="swiper-container" v-if="homeSwiper.length">
       <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="../imgs/rowing/s1.png" alt />
-        </div>
-        <div class="swiper-slide">
-          <img src="../imgs/rowing/s2.png" alt />
-        </div>
-        <div class="swiper-slide">
-          <img src="../imgs/rowing/s3.png" alt />
-        </div>
-        <div class="swiper-slide">
-          <img src="../imgs/rowing/s4.png" alt />
-        </div>
-        <div class="swiper-slide">
-          <img src="../imgs/rowing/s5.png" alt />
-        </div>
-        <div class="swiper-slide">
-          <img src="../imgs/rowing/s6.png" alt />
-        </div>
-        <div class="swiper-slide">
-          <img src="../imgs/rowing/s7.png" alt />
-        </div>
-        <div class="swiper-slide">
-          <img src="../imgs/rowing/s8.png" alt />
-        </div>
-        <div class="swiper-slide">
-          <img src="../imgs/rowing/s9.png" alt />
+        <div class="swiper-slide" v-for="(item, index) in homeSwiper" :key="index">
+          <img :src="item.imgurl" alt />
         </div>
       </div>
       <div class="swiper-pagination"></div>
@@ -45,24 +21,36 @@ import Swiper from "swiper";
 import "../../../../node_modules/swiper/swiper.less";
 import Hotnav from "./Hotnav";
 import Hotshoplist from "./Hotshoplist";
+import { mapState } from "vuex";
 export default {
   components: {
     Hotnav,
     Hotshoplist
   },
+  computed: {
+    ...mapState(["homeSwiper"])
+  },
+  watch: {
+    homeSwiper() {
+      this.$nextTick(() => {
+        new Swiper(".swiper-container", {
+          loop: true,
+          autoplay: true,
+          autoplay: {
+            disableOnInteraction: false
+          },
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true
+          }
+        });
+      });
+    }
+  },
   mounted() {
-    // this.$store.dispatch('reqHomeSwiper')
-    new Swiper(".swiper-container", {
-      loop: true,
-      autoplay: true,
-      autoplay: {
-        disableOnInteraction: false
-      },
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true
-      }
-    });
+    this.$store.dispatch("reqHomeSwiper")
+    this.$store.dispatch('reqHomeNav')
+    this.$store.dispatch('reqHomeShopList')
   }
 };
 </script>
