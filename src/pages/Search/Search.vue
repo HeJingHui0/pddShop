@@ -4,206 +4,28 @@
     <div class="search_main">
       <div class="search_menu">
         <ul>
-          <li ref="menuList" class="search_menu_list" :class="{isactive: 0 === activeIndex}" @click="handleItemClick(1)">
-            <span class="search_menu_title">女装</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">鞋包</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">男装</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">内衣</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">食品</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">百货</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">美装</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">手机</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">电器</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">水果</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">服饰</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">母婴</span>
-          </li>
-          <li class="search_menu_list">
-            <span class="search_menu_title">儿童</span>
+          <li ref="menuList"
+              class="search_menu_list" 
+              v-for="(item, menuIndex) in searchGoods"
+              :key="menuIndex"
+              :class="{isactive: menuIndex === activeIndex}" 
+              @click="handleItemClick(activeIndex)"
+          >
+              <span class="search_menu_title">{{item.name}}</span>
           </li>
         </ul>
       </div>
       <div class="search_shop">
         <ul ref="shopList">
-          <li class="search_shop_list">
+          <li class="search_shop_list" v-for="(item, shopIndex) in searchGoods" :key="shopIndex">
             <div class="shop_list_header">
-              <span>女装1</span>
-              <a href>查看更多></a>
+              <span>{{item.name}}</span>
+              <a href="">查看更多></a>
             </div>
             <ul class="shop_list_content">
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-            </ul>
-          </li>
-          <li class="search_shop_list">
-            <div class="shop_list_header">
-              <span>鞋包</span>
-              <a href>查看更多></a>
-            </div>
-            <ul class="shop_list_content">
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-            </ul>
-          </li>
-          <li class="search_shop_list">
-            <div class="shop_list_header">
-              <span>男装</span>
-              <a href>查看更多></a>
-            </div>
-            <ul class="shop_list_content">
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-            </ul>
-          </li>
-          <li class="search_shop_list">
-            <div class="shop_list_header">
-              <span>内衣</span>
-              <a href>查看更多></a>
-            </div>
-            <ul class="shop_list_content">
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-            </ul>
-          </li>
-          <li class="search_shop_list">
-            <div class="shop_list_header">
-              <span>食品</span>
-              <a href>查看更多></a>
-            </div>
-            <ul class="shop_list_content">
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
-              </li>
-              <li class="shop_list_item">
-                <img src="./images/s1.png" alt />
-                <span>女装</span>
+              <li class="shop_list_item" v-for="(subItem, subIndex) in item.items" :key="subIndex">
+                <img :src="subItem.icon" alt />
+                <span>{{subItem.title}}</span>
               </li>
             </ul>
           </li>  
@@ -218,6 +40,7 @@
 import Searchnav from "./Children/Searchnav";
 import Searchpage from './Children/Searchpage'
 import BScroll from 'better-scroll'
+import {mapState} from 'vuex'
 export default {
   data() {
     return {
@@ -231,10 +54,11 @@ export default {
     Searchpage
   },
   computed: {
+    ...mapState(['searchGoods']),
     activeIndex() {
       return this.rightListTop.findIndex((item, index) => {
         this.handleItemScroll(index)
-        return item <= this.scrollY < this.rightListTop[index + 1]
+        return item <= this.scrollY < this.rightListTop[index === this.rightListTop.length - 1 ? index : index + 1]
       })
     }
   },
@@ -268,8 +92,8 @@ export default {
       this.rightBScroll.scrollTo(0, -this.scrollY, 300)
     },
     handleItemScroll(index) {
-      // let itemScroll = this.$refs.menuList[index]
-      let itemScroll = [this.$refs.menuList][index]
+      let itemScroll = this.$refs.menuList[index]
+      // let itemScroll = [this.$refs.menuList][index]
       this.leftBScroll.scrollToElement(itemScroll, 300, 0, -100)
     },
     showPage(flag) {
@@ -277,6 +101,7 @@ export default {
     }
   },
   mounted() {
+    this.$store.dispatch('reqSearchGoods')
     this.$nextTick(() => {
       this.initBScroll()
       this.getRightListTop()

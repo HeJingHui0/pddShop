@@ -1,17 +1,22 @@
 <template>
   <li class="shop_list_item">
-    <img src="../../pages/Home/imgs/shop_list/shop_item.png" alt />
-    <div class="list_item_title">我是推荐模块商品的标题我是推荐模块商品的标题</div>
+    <img :src="item.image_url" alt />
+    <div class="list_item_title">{{item.short_name}}</div>
     <div class="list_item_bottom">
-      <span class="item_bottom_price">￥99</span>
-      <span class="item_bottom_count">已拼999件</span>
+      <span class="item_bottom_price">￥{{item.price / 100}}</span>
+      <span class="item_bottom_count">{{item.sales_tip}}</span>
       <button class="item_botton_btn">找相关</button>
     </div>
   </li>
 </template>
 
 <script>
-export default {};
+
+export default {
+  props: {
+    item: Object
+  }
+};
 </script>
 <style scoped lang="less">
 .shop_list_item:nth-child(2n-1) {
@@ -22,7 +27,7 @@ export default {};
   padding-bottom: 15px;
   img {
     width: 100%;
-    height: 100px;
+    height: 90px;
   }
   .list_item_title {
     font-size: 16px;

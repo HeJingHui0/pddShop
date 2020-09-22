@@ -1,5 +1,7 @@
 export default {
     homeSwiper: [],
     homeNav: [],
-    homeShopList: []
+    homeShopList: [],
+    recommendShopList: [],
+    searchGoods: []
 }
