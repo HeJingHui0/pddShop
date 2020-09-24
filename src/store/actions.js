@@ -7,22 +7,16 @@ export default {
         commit(HOME_SWIPER, {homeSwiper: result.message})
     },
     async reqHomeNav({commit}) {
-        let navData = []
         const result = await getHomeNav()
-        for(let key in result.message) {
-            result.message[key].forEach(item => {
-                navData.push(item)
-            })
-        }
-        commit(HOME_NAV, {homeNav: navData})
+        commit(HOME_NAV, {homeNav: result.message})
     },
     async reqHomeShopList({commit}) {
         const result = await getHomeShopList()
         commit(HOME_SHOP_LIST, {homeShopList: result.message.goods_list})
     },
-    async reqRecommendShopList({commit}) {
-        const result = await getRecommendShopList()
-        commit(RECOMMEND_SHOP_LIST, {recommendShopList: result.message.data})
+    async reqRecommendShopList({commit}, params) {
+        const result = await getRecommendShopList(params)
+        commit(RECOMMEND_SHOP_LIST, {recommendShopList: result.message})
     },
     async reqSearchGoods({commit}) {
         const result = await getSearchGoods()

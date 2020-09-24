@@ -12,7 +12,7 @@ export default {
         state.homeShopList = homeShopList
     },
     [RECOMMEND_SHOP_LIST](state, {recommendShopList}) {
-        state.recommendShopList = recommendShopList
+        state.recommendShopList = state.recommendShopList.concat(recommendShopList)
     },
     [SEARCH_GOODS](state, {searchGoods}) {
         state.searchGoods = searchGoods
