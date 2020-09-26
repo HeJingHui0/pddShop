@@ -6,6 +6,8 @@ import Chat from './../pages/Chat/Chat.vue'
 import Mine from './../pages/Mine/Mine.vue'
 import Recommend from './../pages/Recommend/Recommend.vue'
 import Search from './../pages/Search/Search.vue'
+import Login from '../components/Login/Login.vue'
+
 import Hot from './../pages/Home/Children/Hot.vue'
 import Box from './../pages/Home/Children/Box.vue'
 import Dress from './../pages/Home/Children/Dress.vue'
@@ -24,7 +26,7 @@ export default new Router({
     {path: '/home', component: Home,
       children: [
         {path: '/home', redirect: '/home/hot'},
-        {path: 'hot', component: Hot},
+        {path: 'hot', component: Hot, meta: {showTabbar: true}},
         {path: 'box', component: Box},
         {path: 'dress', component: Dress},
         {path: 'ele', component: Ele},
@@ -35,9 +37,10 @@ export default new Router({
         {path: 'shirt', component: Shirt}
       ]
     },
-    {path: '/chat', component: Chat},
-    {path: '/mine', component: Mine},
-    {path: '/recommend', component: Recommend},
-    {path: '/search', component: Search}
+    {path: '/chat', component: Chat, meta: {showTabbar: true}},
+    {path: '/mine', component: Mine, meta: {showTabbar: true}},
+    {path: '/recommend', component: Recommend, meta: {showTabbar: true}},
+    {path: '/search', component: Search, meta: {showTabbar: true}},
+    {path: '/login', component: Login}
   ]
 })
