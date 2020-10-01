@@ -31,11 +31,11 @@
           <div :class="{current: !loginMode}">
             <section>
               <section class="login-message">
-                <input type="tel" maxlength="11" placeholder="用户名" v-model="user_name" />
+                <input type="tel" maxlength="11" placeholder="用户名" v-model="userName" />
               </section>
               <section class="login-verification">
-                <input type="password" maxlength="20" placeholder="密码" v-if="pwdMode" v-model="pwd" />
-                <input type="text" maxlength="20" placeholder="密码" v-else v-model="pwd" />
+                <input type="password" maxlength="20" placeholder="密码" v-if="pwdMode" v-model="userPassword" />
+                <input type="text" maxlength="20" placeholder="密码" v-else v-model="userPassword" />
                 <div class="switch-show">
                   <img
                     @click.prevent="dealPwdMode(false)"
@@ -57,7 +57,7 @@
                 <input type="text" maxlength="4" placeholder="验证码" v-model="captcha" />
                 <img
                   class="get-verification"
-                  src="http://localhost:1688/api/captcha"
+                  src="http://127.0.0.1:3000/api/captcha"
                   alt="captcha"
                   @click.prevent="getCaptcha()"
                   ref="captcha"
@@ -74,17 +74,108 @@
 </template>
 
 <script>
+import { getPhoneCode, getPhoneCodeLogin, getPasswordLogin} from "../../api/index";
+import { Toast } from "mint-ui";
+import {mapActions} from 'vuex'
 export default {
-    data() {
-        return {
-            loginMode: true
-        }
-    },
-    methods: {
-        dealLoginMode(flag) {
-            this.loginMode = flag
-        }
+  data() {
+    return {
+      loginMode: true,
+      phone: "",
+      countDown: 0,
+      pwdMode: true,
+      userName: "",
+      userPassword: "",
+      captcha: "",
+      code: "",
+      userInfo: {}
+    };
+  },
+  computed: {
+    phoneRight() {
+      return /^[1][3, 4, 5, 7, 8][0-9]{9}$/.test(this.phone);
     }
+  },
+  methods: {
+      ...mapActions(['saveUserInfo']),
+    dealLoginMode(flag) {
+      this.loginMode = flag;
+    },
+    async getVerifyCode() {
+      if (this.phoneRight) {
+        this.countDown = 60;
+        this.intervalId = setInterval(() => {
+          this.countDown--;
+          if (!this.countDown) {
+            clearInterval(this.intervalId);
+          }
+        }, 1000);
+      }
+      let phoneCode = await getPhoneCode(this.phone);
+      console.log(phoneCode);
+      if (!phoneCode.success_code) {
+        Toast({
+          message: phoneCode.message,
+          position: "center",
+          duration: 3000
+        });
+      }
+    },
+    dealPwdMode(flag) {
+      this.pwdMode = flag;
+    },
+    getCaptcha() {
+      this.$refs.captcha.src =
+        "http://127.0.0.1:3000/api/captcha?time=" + new Date();
+    },
+    async login() { 
+      if (this.loginMode) {
+        if (!this.phone) {
+          Toast("请输入手机号码");
+          return;
+        } else if (!this.phoneRight) {
+          Toast("请输入正确的手机号码");
+          return;
+        }
+        if (!this.code) {
+          Toast("请输入验证码");
+          return;
+        } else if (!/^\d{6}$/gi.test(this.code)) {
+          Toast("验证码不正确");
+          return;
+        }
+        let result = await getPhoneCodeLogin(this.phone, this.code);
+        if (result.success_code === 200) {
+          this.userInfo = result.message;
+        } else {
+          this.userInfo = { message: "登录失败" };
+        }
+      } else {
+        if (!this.userName) {
+          Toast("请输入用户名");
+          return;
+        } else if (!this.userPassword) {
+          Toast("请输入密码");
+          return;
+        } else if (!this.captcha) {
+          Toast("请输入验证码");
+          return;
+        }
+        let result = await getPasswordLogin(this.userName, this.userPassword, this.captcha);
+        if (result.success_code === 200) {
+          this.userInfo = result.message;
+        } else {
+          this.userInfo = { message: "登录失败" };
+        }
+      }
+      if (!this.userInfo.id) {
+        Toast(this.userInfo.message);
+      } else {
+          this.saveUserInfo(this.userInfo)
+          this.$router.back()
+      }
+    }
+  }
 };
 </script>
 <style scoped lang="less">
@@ -112,7 +203,7 @@ export default {
           padding-bottom: 4px;
         }
         a:first-child {
-            margin-right: 10px;
+          margin-right: 10px;
         }
         .current {
           color: mediumpurple;
@@ -163,6 +254,7 @@ export default {
               position: absolute;
               right: 10px;
               top: 12px;
+              display: block;
               img {
                 display: none;
               }

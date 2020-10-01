@@ -3,5 +3,6 @@ export default {
     homeNav: [],
     homeShopList: [],
     recommendShopList: [],
-    searchGoods: []
+    searchGoods: [],
+    userInfo: {}
 }

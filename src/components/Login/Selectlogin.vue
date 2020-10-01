@@ -1,7 +1,7 @@
 <template>
   <div class="select_login">
       <div class="select_login_title">选择登录方式</div>
-      <router-link class="select_login_btn" tag="botton" to="/login">手机登录</router-link>
+      <router-link class="select_login_btn" to="/login">手机登录</router-link>
   </div>
 </template>
 

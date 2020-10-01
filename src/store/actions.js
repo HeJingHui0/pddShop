@@ -1,5 +1,5 @@
-import {getHomeSwiper, getHomeNav, getHomeShopList, getRecommendShopList, getSearchGoods} from '../api/index'
-import {HOME_SWIPER, HOME_NAV, HOME_SHOP_LIST, RECOMMEND_SHOP_LIST, SEARCH_GOODS} from './mutation-type'
+import {getHomeSwiper, getHomeNav, getHomeShopList, getRecommendShopList, getSearchGoods, getUserInfo} from '../api/index'
+import {HOME_SWIPER, HOME_NAV, HOME_SHOP_LIST, RECOMMEND_SHOP_LIST, SEARCH_GOODS, USER_INFO} from './mutation-type'
 
 export default {
     async reqHomeSwiper({commit}) {
@@ -21,5 +21,14 @@ export default {
     async reqSearchGoods({commit}) {
         const result = await getSearchGoods()
         commit(SEARCH_GOODS, {searchGoods: result.message.data})
+    },
+    saveUserInfo({commit}, userInfo) {
+        commit(USER_INFO, {userInfo})
+    },
+    async getUserInfo({commit}) {
+        const result = await getUserInfo()
+        if(result.success_code === 200) {
+            commit(USER_INFO, {userInfo: result.message})
+        }
     }
 }

@@ -1,4 +1,4 @@
-import {HOME_SWIPER, HOME_NAV, HOME_SHOP_LIST, RECOMMEND_SHOP_LIST, SEARCH_GOODS} from './mutation-type'
+import {HOME_SWIPER, HOME_NAV, HOME_SHOP_LIST, RECOMMEND_SHOP_LIST, SEARCH_GOODS, USER_INFO} from './mutation-type'
 import state from './state'
 
 export default {
@@ -16,5 +16,8 @@ export default {
     },
     [SEARCH_GOODS](state, {searchGoods}) {
         state.searchGoods = searchGoods
+    },
+    [USER_INFO](state, {userInfo}) {
+        state.userInfo = userInfo
     }
 }
