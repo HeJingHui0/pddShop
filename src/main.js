@@ -3,6 +3,7 @@ import App from './App'
 import router from './router'
 import store from './store/index'
 import LyTab from 'ly-tab'
+import './common/css/style.css'
 
 Vue.use(LyTab)
 

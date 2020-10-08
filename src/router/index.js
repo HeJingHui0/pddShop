@@ -18,6 +18,9 @@ import Man from './../pages/Home/Children/Man.vue'
 import Mbaby from './../pages/Home/Children/Mbaby.vue'
 import Shirt from './../pages/Home/Children/Shirt.vue'
 
+import Minesetting from '../pages/Mine/Minesetting.vue'
+import Minedetail from '../pages/Mine/Minedetail.vue'
+
 Vue.use(Router)
 
 export default new Router({
@@ -41,6 +44,8 @@ export default new Router({
     {path: '/mine', component: Mine, meta: {showTabbar: true}},
     {path: '/recommend', component: Recommend, meta: {showTabbar: true}},
     {path: '/search', component: Search, meta: {showTabbar: true}},
-    {path: '/login', component: Login}
+    {path: '/login', component: Login},
+    {path: '/minesetting', component: Minesetting},
+    {path: '/detail', component: Minedetail}
   ]
 })

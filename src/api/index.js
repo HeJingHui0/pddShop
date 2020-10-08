@@ -19,3 +19,8 @@ export const getPhoneCodeLogin = (phone, code) => ajax(BASEURL + '/api/login', {
 export const getPasswordLogin = (userName, userPassword, captcha) => ajax(BASEURL + '/api/passwordlogin', {userName, userPassword, captcha}, 'POST')
 
 export const getUserInfo = () => ajax(BASEURL + '/api/user')
+
+export const getLogout = () => ajax(BASEURL + '/api/logout')
+
+export const changeUserInfo = (userId, userName, userSex, userAddress, userBirthday, userSign) => ajax(BASEURL + '/api/changeinfo', {userId, userName, userSex, userAddress, userBirthday, userSign}, 'POST')
+

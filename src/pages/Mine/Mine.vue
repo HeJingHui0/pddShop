@@ -1,16 +1,20 @@
 <template>
   <div class="mine">
-    <div v-if="userInfo.id">个人中心</div>
+    <div v-if="userInfo.id">
+      <minetop></minetop>
+    </div>
     <selectlogin v-else></selectlogin>
   </div>
 </template>
 
 <script>
 import Selectlogin from "../../components/Login/Selectlogin";
+import Minetop from "./Minetop";
 import { mapState } from "vuex";
 export default {
   components: {
-    Selectlogin
+    Selectlogin,
+    Minetop
   },
   computed: {
     ...mapState(["userInfo"])
