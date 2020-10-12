@@ -1,4 +1,4 @@
-import {HOME_SWIPER, HOME_NAV, HOME_SHOP_LIST, RECOMMEND_SHOP_LIST, SEARCH_GOODS, USER_INFO, RESET_USER_INFO} from './mutation-type'
+import {HOME_SWIPER, HOME_NAV, HOME_SHOP_LIST, RECOMMEND_SHOP_LIST, SEARCH_GOODS, USER_INFO, RESET_USER_INFO, CART_GOODS_LIST} from './mutation-type'
 import state from './state'
 
 export default {
@@ -22,5 +22,8 @@ export default {
     },
     [RESET_USER_INFO](state) {
         state.userInfo = {}
+    },
+    [CART_GOODS_LIST](state, {cartgoods}) {
+        state.cartgoods = cartgoods
     }
 }

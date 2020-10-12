@@ -5,16 +5,21 @@
     <div class="list_item_bottom">
       <span class="item_bottom_price">￥{{item.price / 100}}</span>
       <span class="item_bottom_count">{{item.sales_tip}}</span>
-      <button class="item_botton_btn">找相关</button>
+      <button class="item_botton_btn" @click="addToCart(item)">购物车</button>
     </div>
   </li>
 </template>
 
 <script>
-
+import {addGoodsToCart} from './../../api/index'
 export default {
   props: {
     item: Object
+  },
+  methods: {
+    async addToCart(goods){
+      let result = await addGoodsToCart(this.userInfo.id, goods.goods_id, goods.goods_name, goods.thumb_url, goods.price)
+    }
   }
 };
 </script>
@@ -56,7 +61,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
-      flex: 1;
+      flex: 2;
       font-size: 12px;
       border: 1px solid red;
       border-radius: 5px;

@@ -4,5 +4,6 @@ export default {
     homeShopList: [],
     recommendShopList: [],
     searchGoods: [],
-    userInfo: {}
+    userInfo: {},
+    cartgoods: []
 }

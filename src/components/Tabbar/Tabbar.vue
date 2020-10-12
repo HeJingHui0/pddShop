@@ -18,7 +18,7 @@
     <div class="tabbar_item" @click="routeTo('/chat')">
     <img src="../../common/img/icon_chat_selected.png" v-if="$route.path === '/chat'" alt />
       <img src="../../common/img/icon_chat.png" v-else alt />
-      <span :class="{isactive: $route.path === '/chat'}">聊天</span>
+      <span :class="{isactive: $route.path === '/chat'}">购物车</span>
     </div>
     <div class="tabbar_item" @click="routeTo('/mine')">
     <img src="../../common/img/icon_mine_selected.png" v-if="$route.path === '/mine'" alt />

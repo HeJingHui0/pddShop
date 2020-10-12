@@ -24,3 +24,7 @@ export const getLogout = () => ajax(BASEURL + '/api/logout')
 
 export const changeUserInfo = (userId, userName, userSex, userAddress, userBirthday, userSign) => ajax(BASEURL + '/api/changeinfo', {userId, userName, userSex, userAddress, userBirthday, userSign}, 'POST')
 
+export const addGoodsToCart = (user_id, goods_id, goods_name, thumb_url, price) => ajax(BASE_URL + '/api/addshopcart', {user_id, goods_id, goods_name, thumb_url, price}, 'POST')
+
+export const getCartsGoods = () => ajax(BASE_URL + '/api/cartgoods')
+

@@ -1,5 +1,5 @@
-import {getHomeSwiper, getHomeNav, getHomeShopList, getRecommendShopList, getSearchGoods, getUserInfo, getLogout} from '../api/index'
-import {HOME_SWIPER, HOME_NAV, HOME_SHOP_LIST, RECOMMEND_SHOP_LIST, SEARCH_GOODS, USER_INFO, RESET_USER_INFO} from './mutation-type'
+import {getHomeSwiper, getHomeNav, getHomeShopList, getRecommendShopList, getSearchGoods, getUserInfo, getLogout, getCartsGoods} from '../api/index'
+import {HOME_SWIPER, HOME_NAV, HOME_SHOP_LIST, RECOMMEND_SHOP_LIST, SEARCH_GOODS, USER_INFO, RESET_USER_INFO, CART_GOODS_LIST} from './mutation-type'
 
 export default {
     async reqHomeSwiper({commit}) {
@@ -35,6 +35,12 @@ export default {
         const result = await getLogout()
         if(result.success_code === 200) {
             commit(RESET_USER_INFO)
+        }
+    },
+    async reqCartsGoods({commit}) {
+        const result = await getCartsGoods()
+        if(result.success_code === 200){
+            commit(CART_GOODS_LIST, {cartgoods: result.message})
         }
     }
 }
